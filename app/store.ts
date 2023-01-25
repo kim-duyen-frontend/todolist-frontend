@@ -1,8 +1,11 @@
+import { todoReducer } from "@/features";
 import { Action, combineReducers, ThunkAction,configureStore } from "@reduxjs/toolkit";
 import { getDefaultMiddleware } from "@reduxjs/toolkit/dist/getDefaultMiddleware";
 import { createWrapper, HYDRATE } from "next-redux-wrapper";
 
-const combinedReducer = combineReducers({});
+const combinedReducer = combineReducers({
+  listTodo: todoReducer
+});
 const reducer: typeof combinedReducer = (state, action) => {
   switch (action.type) {
     case HYDRATE: {
