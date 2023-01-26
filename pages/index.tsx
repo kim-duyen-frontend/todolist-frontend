@@ -1,7 +1,9 @@
 import { wrapper } from '@/app/store'
 import FormTodo from '@/components/FormTodo/FormTodo'
 import ListTodo from '@/components/ListTodo/ListTodo'
+import SearchTodo from '@/components/SearchTodo/SearchTodo'
 import { getListTodo } from '@/features'
+import { Container, Space } from '@mantine/core'
 import { NextPage } from 'next'
 import Head from 'next/head'
 
@@ -14,8 +16,13 @@ const Home: NextPage = () => {
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <link rel="icon" href="/favicon.ico" />
       </Head>
-      <FormTodo />
-      <ListTodo />
+      <Container fluid>
+        <FormTodo />
+        <Space h="lg" />
+        <SearchTodo />
+        <Space h="lg" />
+        <ListTodo />
+      </Container>
     </>
   )
 }
