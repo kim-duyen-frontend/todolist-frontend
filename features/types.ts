@@ -6,5 +6,8 @@ export type TTodolist = {
 };
 export type TTodolistState = {
   pending: boolean
-  listTodo: TTodolist[];
+  listTodo: TTodolist[]
+  input_form: string
+  error: boolean
+  message: string
 };

@@ -6,7 +6,6 @@ import dayjs from 'dayjs'
 
 const ListTodo = () => {
     const { listTodo } = useAppSelector(selectCollectionTodoceSelector)
-
     return (
         <div className='overflow-x-auto'>
             <Table>
@@ -24,7 +23,7 @@ const ListTodo = () => {
                             <td>{index + 1}</td>
                             <td>{item.text}</td>
                             <td>{item.status ? (<Badge color="pink" variant="light">Completed</Badge>) : (
-                                <Badge color="pink" variant="light">To Do</Badge>
+                                <Badge color="blue" variant="light">To Do</Badge>
                             )}</td>
                             <td>{dayjs(item.createdAt).format('DD-MM-YYYY')}</td>
                         </tr>

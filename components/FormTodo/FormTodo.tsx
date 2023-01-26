@@ -1,7 +1,16 @@
-import { Box, Button, Textarea } from '@mantine/core';
+import { useAppDispatch, useAppSelector } from '@/app/hooks';
+import { addToDoList, getListTodo, selectCollectionTodoceSelector, setTextForm } from '@/features';
+import { Box, Button, Group, Textarea } from '@mantine/core';
 import React from 'react';
 
 const FormTodo = () => {
+    const dispatch = useAppDispatch()
+    const { input_form } = useAppSelector(selectCollectionTodoceSelector)
+    
+    const handleAddToDo = async () => {
+        await dispatch(addToDoList({ text: input_form, status: false }))
+        await dispatch(getListTodo())
+    }
     return (
         <Box
             sx={(theme) => ({
@@ -15,12 +24,18 @@ const FormTodo = () => {
                 placeholder="Your text..."
                 label="Your text"
                 withAsterisk
+                onChange={(event) => dispatch(setTextForm(event.target.value))}
             />
-            <div className='flex justify-end my-3 gap-x-1.5'>
-                <Button className='hover: bg-transparent' variant="outline">
+
+            <Group position="right">
+                <Button
+                    className='hover: bg-transparent my-3'
+                    variant="outline"
+                    onClick={handleAddToDo}
+                >
                     Add Todo
                 </Button>
-            </div>
+            </Group>
         </Box>
     );
 };
