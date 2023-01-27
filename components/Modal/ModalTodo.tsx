@@ -4,11 +4,11 @@ import { useAppDispatch, useAppSelector } from '@/app/hooks';
 import { deleteToDoList, selectCollectionTodoceSelector, setModal } from '@/features';
 
 const ModalTodo = () => {
-    const { open_modal, title_modal, id_todo } = useAppSelector(selectCollectionTodoceSelector)
+    const { open_modal, title_modal, data_todo } = useAppSelector(selectCollectionTodoceSelector)
     const dispatch = useAppDispatch()
-    
+
     const handleDeleteOneToDo = () => {
-        dispatch(deleteToDoList(id_todo))
+        dispatch(deleteToDoList(data_todo))
         dispatch(setModal(false))
     }
     return (

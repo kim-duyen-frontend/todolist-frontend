@@ -5,12 +5,12 @@ export type TTodolist = {
   createdAt:string;
 };
 export type TTodolistState = {
-  pending: boolean
-  listTodo: TTodolist[]
-  input_form: string
-  error: boolean
-  message: string
-  open_modal: boolean
-  title_modal: string
-  id_todo: string
+  pending: boolean;
+  listTodo: TTodolist[];
+  input_form: string;
+  error: boolean;
+  message: string;
+  open_modal: boolean;
+  title_modal: string;
+  data_todo: TTodolist;
 };

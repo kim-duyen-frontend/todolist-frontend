@@ -1,10 +1,11 @@
 import { createReducer } from "@reduxjs/toolkit";
 import {
   addToDoList,
+  deleteToDoList,
   getListTodo,
   setMessageForm,
   setModal,
-  setSaveOneIdTodo,
+  setSaveOneDataTodo,
   setTextForm,
   setTitleModal,
 } from "./actions";
@@ -18,7 +19,7 @@ const initialState: TTodolistState = {
   message: "",
   open_modal: false,
   title_modal: "",
-  id_todo: "",
+  data_todo: { _id: "", text: "", status: false, createdAt: "" },
 };
 export const todoReducer = createReducer(initialState, (builder) => {
   builder
@@ -52,7 +53,15 @@ export const todoReducer = createReducer(initialState, (builder) => {
     .addCase(setTitleModal, (state, { payload }) => {
       state.title_modal = payload;
     })
-    .addCase(setSaveOneIdTodo, (state, { payload }) => {
-      state.id_todo = payload;
+    .addCase(setSaveOneDataTodo, (state, { payload }) => {
+      state.data_todo = payload;
+    })
+    .addCase(deleteToDoList.pending, (state) => {
+      state.pending = true;
+    })
+    .addCase(deleteToDoList.fulfilled, (state, { payload }) => {
+      const temp = [...state.listTodo]
+      state.pending = false;
+      state.listTodo = temp.filter((item) => item._id !== payload._id)
     });
 });

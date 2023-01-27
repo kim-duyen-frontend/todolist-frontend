@@ -42,12 +42,12 @@ export const addToDoList = createAsyncThunk(
 );
 export const deleteToDoList = createAsyncThunk(
   "todolist/deletetodo",
-  async (_id: string, { rejectWithValue }) => {
+  async (dataTodo:Partial<TTodolist>, { rejectWithValue }) => {
     try {
-      const response = await axiosInstance.delete<TTodolist[]>(
-        `${URL_API_DELETE_TODO_LIST}/${_id}`
+      await axiosInstance.delete<TTodolist[]>(
+        `${URL_API_DELETE_TODO_LIST}/${dataTodo._id}`
       );
-      return response;
+      return dataTodo;
     } catch (error) {
       return rejectWithValue(
         (error as AxiosError<TResponseError>).response?.data
@@ -59,4 +59,4 @@ export const setTextForm = createAction<string>("todolist/inputform");
 export const setMessageForm = createAction<string>("todolist/messageform");
 export const setModal = createAction<boolean>("todolist/modal");
 export const setTitleModal = createAction<string>("todolist/titlemodal");
-export const setSaveOneIdTodo = createAction<string>("todolist/saveidtodo")
+export const setSaveOneDataTodo = createAction<TTodolist>("todolist/saveidtodo");

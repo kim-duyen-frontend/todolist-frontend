@@ -1,7 +1,7 @@
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
-import { getListTodo, selectCollectionTodoceSelector, setModal, setSaveOneIdTodo, setTitleModal } from '@/features';
+import { selectCollectionTodoceSelector, setModal, setSaveOneDataTodo, setTitleModal, TTodolist } from '@/features';
 import { ActionIcon, Badge, Button, Checkbox, Group, Table } from '@mantine/core';
-import React, { useEffect } from 'react';
+import React from 'react';
 import dayjs from 'dayjs'
 import { IconSortAscending, IconSortDescending } from '@tabler/icons';
 import ModalTodo from '../Modal/ModalTodo';
@@ -13,14 +13,11 @@ const ListTodo = () => {
         dispatch(setModal(true))
         dispatch(setTitleModal("Modal Edit"))
     }
-    const handleOpenModalDelete = (id: string) => {
+    const handleOpenModalDelete = (data: TTodolist) => {
         dispatch(setModal(true))
         dispatch(setTitleModal("Modal Delete"))
-        dispatch(setSaveOneIdTodo(id))
+        dispatch(setSaveOneDataTodo(data))
     }
-    useEffect(() => {
-        dispatch(getListTodo())
-    }, [open_modal])
     return (
         <>
             <div className='overflow-x-auto'>
@@ -76,7 +73,7 @@ const ListTodo = () => {
                                         </Button>
                                         <Button
                                             variant="outline"
-                                            onClick={() => handleOpenModalDelete(item._id)}
+                                            onClick={() => handleOpenModalDelete(item)}
                                             compact
                                         >
                                             Delete
