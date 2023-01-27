@@ -1,12 +1,16 @@
 import React from 'react';
 import { Button, Group, Modal, Space, Text, TextInput } from '@mantine/core';
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
-import { selectCollectionTodoceSelector, setModal } from '@/features';
+import { deleteToDoList, selectCollectionTodoceSelector, setModal } from '@/features';
 
 const ModalTodo = () => {
-    const { open_modal, title_modal } = useAppSelector(selectCollectionTodoceSelector)
+    const { open_modal, title_modal, id_todo } = useAppSelector(selectCollectionTodoceSelector)
     const dispatch = useAppDispatch()
-
+    
+    const handleDeleteOneToDo = () => {
+        dispatch(deleteToDoList(id_todo))
+        dispatch(setModal(false))
+    }
     return (
         <Modal
             opened={open_modal}
@@ -32,7 +36,10 @@ const ModalTodo = () => {
                     <Text>Are you sure you want to delete ?</Text>
                     <Space h="md" />
                     <Group position='right'>
-                        <Button variant="outline">
+                        <Button
+                            variant="outline"
+                            onClick={handleDeleteOneToDo}
+                        >
                             OK
                         </Button>
                     </Group>

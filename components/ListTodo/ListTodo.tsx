@@ -1,22 +1,26 @@
 import { useAppDispatch, useAppSelector } from '@/app/hooks';
-import { selectCollectionTodoceSelector, setModal, setTitleModal } from '@/features';
+import { getListTodo, selectCollectionTodoceSelector, setModal, setSaveOneIdTodo, setTitleModal } from '@/features';
 import { ActionIcon, Badge, Button, Checkbox, Group, Table } from '@mantine/core';
-import React from 'react';
+import React, { useEffect } from 'react';
 import dayjs from 'dayjs'
 import { IconSortAscending, IconSortDescending } from '@tabler/icons';
 import ModalTodo from '../Modal/ModalTodo';
 
 const ListTodo = () => {
-    const { listTodo } = useAppSelector(selectCollectionTodoceSelector)
+    const { listTodo, open_modal } = useAppSelector(selectCollectionTodoceSelector)
     const dispatch = useAppDispatch()
     const handleOpenModalEdit = () => {
         dispatch(setModal(true))
         dispatch(setTitleModal("Modal Edit"))
     }
-    const handleOpenModalDelete = () => {
+    const handleOpenModalDelete = (id: string) => {
         dispatch(setModal(true))
         dispatch(setTitleModal("Modal Delete"))
+        dispatch(setSaveOneIdTodo(id))
     }
+    useEffect(() => {
+        dispatch(getListTodo())
+    }, [open_modal])
     return (
         <>
             <div className='overflow-x-auto'>
@@ -72,7 +76,7 @@ const ListTodo = () => {
                                         </Button>
                                         <Button
                                             variant="outline"
-                                            onClick={handleOpenModalDelete}
+                                            onClick={() => handleOpenModalDelete(item._id)}
                                             compact
                                         >
                                             Delete

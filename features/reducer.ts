@@ -4,6 +4,7 @@ import {
   getListTodo,
   setMessageForm,
   setModal,
+  setSaveOneIdTodo,
   setTextForm,
   setTitleModal,
 } from "./actions";
@@ -17,6 +18,7 @@ const initialState: TTodolistState = {
   message: "",
   open_modal: false,
   title_modal: "",
+  id_todo: "",
 };
 export const todoReducer = createReducer(initialState, (builder) => {
   builder
@@ -49,5 +51,8 @@ export const todoReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setTitleModal, (state, { payload }) => {
       state.title_modal = payload;
+    })
+    .addCase(setSaveOneIdTodo, (state, { payload }) => {
+      state.id_todo = payload;
     });
 });

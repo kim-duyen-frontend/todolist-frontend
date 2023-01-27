@@ -12,4 +12,5 @@ export type TTodolistState = {
   message: string
   open_modal: boolean
   title_modal: string
+  id_todo: string
 };
