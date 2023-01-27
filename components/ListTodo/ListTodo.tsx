@@ -7,7 +7,7 @@ import { IconSortAscending, IconSortDescending } from '@tabler/icons';
 import ModalTodo from '../Modal/ModalTodo';
 
 const ListTodo = () => {
-    const { listTodo, open_modal } = useAppSelector(selectCollectionTodoceSelector)
+    const { listTodo, search_text } = useAppSelector(selectCollectionTodoceSelector)
     const dispatch = useAppDispatch()
     const handleOpenModalEdit = () => {
         dispatch(setModal(true))
@@ -53,35 +53,38 @@ const ListTodo = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        {listTodo?.length > 0 && listTodo.map((item, index) => (
-                            <tr key={item._id}>
-                                <td>{index + 1}</td>
-                                <td><Checkbox /></td>
-                                <td>{item.text}</td>
-                                <td>{item.status ? (<Badge color="pink" variant="light">Completed</Badge>) : (
-                                    <Badge color="blue" variant="light">To Do</Badge>
-                                )}</td>
-                                <td>{dayjs(item.createdAt).format('DD-MM-YYYY')}</td>
-                                <td>
-                                    <Group position='left'>
-                                        <Button
-                                            variant="outline"
-                                            onClick={handleOpenModalEdit}
-                                            compact
-                                        >
-                                            Edit
-                                        </Button>
-                                        <Button
-                                            variant="outline"
-                                            onClick={() => handleOpenModalDelete(item)}
-                                            compact
-                                        >
-                                            Delete
-                                        </Button>
-                                    </Group>
-                                </td>
-                            </tr>
-                        ))}
+                        {listTodo?.length > 0 &&
+                            listTodo
+                                .filter((item) => item.text.toLowerCase().includes(search_text.toLowerCase()))
+                                .map((item, index) => (
+                                    <tr key={item._id}>
+                                        <td>{index + 1}</td>
+                                        <td><Checkbox /></td>
+                                        <td>{item.text}</td>
+                                        <td>{item.status ? (<Badge color="pink" variant="light">Completed</Badge>) : (
+                                            <Badge color="blue" variant="light">To Do</Badge>
+                                        )}</td>
+                                        <td>{dayjs(item.createdAt).format('DD-MM-YYYY')}</td>
+                                        <td>
+                                            <Group position='left'>
+                                                <Button
+                                                    variant="outline"
+                                                    onClick={handleOpenModalEdit}
+                                                    compact
+                                                >
+                                                    Edit
+                                                </Button>
+                                                <Button
+                                                    variant="outline"
+                                                    onClick={() => handleOpenModalDelete(item)}
+                                                    compact
+                                                >
+                                                    Delete
+                                                </Button>
+                                            </Group>
+                                        </td>
+                                    </tr>
+                                ))}
                     </tbody>
                 </Table>
             </div>

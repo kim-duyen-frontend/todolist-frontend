@@ -6,6 +6,7 @@ import {
   setMessageForm,
   setModal,
   setSaveOneDataTodo,
+  setSearchText,
   setTextForm,
   setTitleModal,
 } from "./actions";
@@ -20,6 +21,7 @@ const initialState: TTodolistState = {
   open_modal: false,
   title_modal: "",
   data_todo: { _id: "", text: "", status: false, createdAt: "" },
+  search_text: "",
 };
 export const todoReducer = createReducer(initialState, (builder) => {
   builder
@@ -60,8 +62,11 @@ export const todoReducer = createReducer(initialState, (builder) => {
       state.pending = true;
     })
     .addCase(deleteToDoList.fulfilled, (state, { payload }) => {
-      const temp = [...state.listTodo]
+      const temp = [...state.listTodo];
       state.pending = false;
-      state.listTodo = temp.filter((item) => item._id !== payload._id)
+      state.listTodo = temp.filter((item) => item._id !== payload._id);
+    })
+    .addCase(setSearchText, (state, { payload }) => {
+      state.search_text = payload;
     });
 });

@@ -60,3 +60,4 @@ export const setMessageForm = createAction<string>("todolist/messageform");
 export const setModal = createAction<boolean>("todolist/modal");
 export const setTitleModal = createAction<string>("todolist/titlemodal");
 export const setSaveOneDataTodo = createAction<TTodolist>("todolist/saveidtodo");
+export const setSearchText = createAction<string>("todolist/searchtext")
