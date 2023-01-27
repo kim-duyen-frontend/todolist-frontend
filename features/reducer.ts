@@ -3,7 +3,9 @@ import {
   addToDoList,
   getListTodo,
   setMessageForm,
+  setModal,
   setTextForm,
+  setTitleModal,
 } from "./actions";
 import { TTodolistState } from "./types";
 
@@ -13,6 +15,8 @@ const initialState: TTodolistState = {
   input_form: "",
   error: false,
   message: "",
+  open_modal: false,
+  title_modal: "",
 };
 export const todoReducer = createReducer(initialState, (builder) => {
   builder
@@ -39,5 +43,11 @@ export const todoReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setMessageForm, (state, { payload }) => {
       state.message = payload;
+    })
+    .addCase(setModal, (state, { payload }) => {
+      state.open_modal = payload;
+    })
+    .addCase(setTitleModal, (state, { payload }) => {
+      state.title_modal = payload;
     });
 });

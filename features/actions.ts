@@ -38,3 +38,5 @@ export const addToDoList = createAsyncThunk(
 );
 export const setTextForm = createAction<string>("todolist/inputform");
 export const setMessageForm = createAction<string>("todolist/messageform");
+export const setModal = createAction<boolean>("todolist/modal");
+export const setTitleModal = createAction<string>("todolist/titlemodal");
