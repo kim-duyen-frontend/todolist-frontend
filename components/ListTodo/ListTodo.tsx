@@ -9,9 +9,11 @@ import ModalTodo from '../Modal/ModalTodo';
 const ListTodo = () => {
     const { listTodo, search_text, checked } = useAppSelector(selectCollectionTodoceSelector)
     const dispatch = useAppDispatch()
-    const handleOpenModalEdit = () => {
+    
+    const handleOpenModalEdit = (data:TTodolist) => {
         dispatch(setModal(true))
         dispatch(setTitleModal("Modal Edit"))
+        dispatch(setSaveOneDataTodo(data))
     }
     const handleOpenModalDelete = (data: TTodolist) => {
         dispatch(setModal(true))
@@ -82,7 +84,7 @@ const ListTodo = () => {
                                             <Group position='left'>
                                                 <Button
                                                     variant="outline"
-                                                    onClick={handleOpenModalEdit}
+                                                    onClick={() => handleOpenModalEdit(item)}
                                                     compact
                                                 >
                                                     Edit

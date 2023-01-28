@@ -82,3 +82,6 @@ export const setSaveOneDataTodo = createAction<TTodolist>(
 );
 export const setSearchText = createAction<string>("todolist/searchtext");
 export const setChecked = createAction<boolean>("todolist/checkbox");
+export const setInputTextModalEdit = createAction<string>(
+  "todolist/textmodaledit"
+);

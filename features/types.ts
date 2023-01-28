@@ -15,4 +15,5 @@ export type TTodolistState = {
   data_todo: TTodolist;
   search_text: string;
   checked: boolean;
+  text_edit: string;
 };

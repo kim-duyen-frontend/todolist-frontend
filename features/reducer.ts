@@ -4,6 +4,7 @@ import {
   deleteToDoList,
   getListTodo,
   setChecked,
+  setInputTextModalEdit,
   setMessageForm,
   setModal,
   setSaveOneDataTodo,
@@ -25,6 +26,7 @@ const initialState: TTodolistState = {
   data_todo: { _id: "", text: "", status: false, createdAt: "" },
   search_text: "",
   checked: false,
+  text_edit: "",
 };
 export const todoReducer = createReducer(initialState, (builder) => {
   builder
@@ -85,5 +87,8 @@ export const todoReducer = createReducer(initialState, (builder) => {
     .addCase(updateToDoList.rejected, (state) => {
       state.pending = false;
       state.error = true;
+    })
+    .addCase(setInputTextModalEdit, (state, { payload }) => {
+      state.text_edit = payload;
     });
 });
