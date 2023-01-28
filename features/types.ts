@@ -14,4 +14,5 @@ export type TTodolistState = {
   title_modal: string;
   data_todo: TTodolist;
   search_text: string;
+  checked: boolean;
 };

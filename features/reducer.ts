@@ -3,12 +3,14 @@ import {
   addToDoList,
   deleteToDoList,
   getListTodo,
+  setChecked,
   setMessageForm,
   setModal,
   setSaveOneDataTodo,
   setSearchText,
   setTextForm,
   setTitleModal,
+  updateToDoList,
 } from "./actions";
 import { TTodolistState } from "./types";
 
@@ -22,6 +24,7 @@ const initialState: TTodolistState = {
   title_modal: "",
   data_todo: { _id: "", text: "", status: false, createdAt: "" },
   search_text: "",
+  checked: false,
 };
 export const todoReducer = createReducer(initialState, (builder) => {
   builder
@@ -68,5 +71,19 @@ export const todoReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setSearchText, (state, { payload }) => {
       state.search_text = payload;
+    })
+    .addCase(setChecked, (state, { payload }) => {
+      state.checked = payload;
+    })
+    .addCase(updateToDoList.pending, (state) => {
+      state.pending = true;
+    })
+    .addCase(updateToDoList.fulfilled, (state, { payload }) => {
+      state.pending = false;
+      state.listTodo = payload;
+    })
+    .addCase(updateToDoList.rejected, (state) => {
+      state.pending = false;
+      state.error = true;
     });
 });
