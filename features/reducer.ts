@@ -6,6 +6,7 @@ import {
   setChecked,
   setInputTextModalEdit,
   setMessageForm,
+  setMessageModalEdit,
   setModal,
   setSaveOneDataTodo,
   setSearchText,
@@ -21,6 +22,7 @@ const initialState: TTodolistState = {
   input_form: "",
   error: false,
   message: "",
+  message_modal_edit: "",
   open_modal: false,
   title_modal: "",
   data_todo: { _id: "", text: "", status: false, createdAt: "" },
@@ -53,6 +55,9 @@ export const todoReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setMessageForm, (state, { payload }) => {
       state.message = payload;
+    })
+    .addCase(setMessageModalEdit, (state, { payload }) => {
+      state.message_modal_edit = payload;
     })
     .addCase(setModal, (state, { payload }) => {
       state.open_modal = payload;

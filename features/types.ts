@@ -10,6 +10,7 @@ export type TTodolistState = {
   input_form: string;
   error: boolean;
   message: string;
+  message_modal_edit: string;
   open_modal: boolean;
   title_modal: string;
   data_todo: TTodolist;
