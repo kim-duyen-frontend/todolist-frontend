@@ -63,7 +63,7 @@ const ListTodo = () => {
                     <tbody>
                         {listTodo?.length > 0 &&
                             listTodo
-                                // .filter((item) => item.text.toLowerCase().includes(search_text.toLowerCase()))
+                                .filter((item) => item.text.toLowerCase().includes(search_text.toLowerCase()))
                                 .map((item, index) => (
                                     <tr key={item._id}>
                                         <td>{index + 1}</td>
