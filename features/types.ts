@@ -2,7 +2,7 @@ export type TTodolist = {
   _id: string;
   text: string;
   status: boolean;
-  createdAt:string;
+  createdAt:number;
 };
 export type TTodolistState = {
   pending: boolean;
@@ -17,4 +17,5 @@ export type TTodolistState = {
   search_text: string;
   checked: boolean;
   text_edit: string;
+  type_sort_name: boolean;
 };

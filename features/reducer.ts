@@ -12,23 +12,25 @@ import {
   setSearchText,
   setTextForm,
   setTitleModal,
+  setTypeSortText,
   updateToDoList,
 } from "./actions";
 import { TTodolistState } from "./types";
 
 const initialState: TTodolistState = {
   pending: false,
-  listTodo: [{ _id: "", text: "", status: false, createdAt: "" }],
+  listTodo: [{ _id: "", text: "", status: false, createdAt: 0 }],
   input_form: "",
   error: false,
   message: "",
   message_modal_edit: "",
   open_modal: false,
   title_modal: "",
-  data_todo: { _id: "", text: "", status: false, createdAt: "" },
+  data_todo: { _id: "", text: "", status: false, createdAt: 0 },
   search_text: "",
   checked: false,
   text_edit: "",
+  type_sort_name: false,
 };
 export const todoReducer = createReducer(initialState, (builder) => {
   builder
@@ -95,5 +97,8 @@ export const todoReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setInputTextModalEdit, (state, { payload }) => {
       state.text_edit = payload;
+    })
+    .addCase(setTypeSortText, (state, { payload }) => {
+      state.type_sort_name = payload;
     });
 });
