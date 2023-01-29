@@ -86,4 +86,4 @@ export const setChecked = createAction<boolean>("todolist/checkbox");
 export const setInputTextModalEdit = createAction<string>(
   "todolist/textmodaledit"
 );
-export const setTypeSortText = createAction<boolean>("todolist/sorttexttodos")
+export const setTypeSortDate = createAction<boolean>("todolist/sorttexttodos");

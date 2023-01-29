@@ -7,7 +7,7 @@ import {
   setTitleModal,
   TTodolist,
   updateToDoList,
-  setTypeSortText,
+  setTypeSortDate,
 } from "@/features";
 import {
   ActionIcon,
@@ -23,7 +23,7 @@ import { IconSortAscending, IconSortDescending } from "@tabler/icons";
 import ModalTodo from "../Modal/ModalTodo";
 
 const ListTodo = () => {
-  const { listTodo, search_text, checked, type_sort_name } = useAppSelector(
+  const { listTodo, search_text, checked, type_sort_date } = useAppSelector(
     selectCollectionTodoceSelector
   );
   const dispatch = useAppDispatch();
@@ -56,28 +56,28 @@ const ListTodo = () => {
             <tr>
               <th>#</th>
               <th></th>
+              <th>Text</th>
+              <th>Status</th>
               <th>
                 <Group>
-                  {type_sort_name ? (
+                  {type_sort_date ? (
                     <ActionIcon variant="subtle">
                       <IconSortAscending
                         size={16}
-                        onClick={() => dispatch(setTypeSortText(false))}
+                        onClick={() => dispatch(setTypeSortDate(false))}
                       />
                     </ActionIcon>
                   ) : (
                     <ActionIcon variant="subtle">
                       <IconSortDescending
                         size={16}
-                        onClick={() => dispatch(setTypeSortText(true))}
+                        onClick={() => dispatch(setTypeSortDate(true))}
                       />
                     </ActionIcon>
                   )}
-                  Text
+                  Created at
                 </Group>
               </th>
-              <th>Status</th>
-              <th>Created at</th>
               <th>Actions</th>
             </tr>
           </thead>
@@ -88,10 +88,10 @@ const ListTodo = () => {
                   item.text.toLowerCase().includes(search_text.toLowerCase())
                 )
                 .sort((a, b) => {
-                  if (type_sort_name === true) {
-                    return a.text > b.text ? 1 : -1;
-                  } else if (type_sort_name === false) {
-                    return a.text < b.text ? 1 : -1;
+                  if (type_sort_date === true) {
+                    return a.createdAt > b.createdAt ? 1 : -1;
+                  } else if (type_sort_date === false) {
+                    return a.createdAt < b.createdAt ? 1 : -1;
                   } else {
                     return 0;
                   }

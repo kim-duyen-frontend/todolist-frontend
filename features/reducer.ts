@@ -12,7 +12,7 @@ import {
   setSearchText,
   setTextForm,
   setTitleModal,
-  setTypeSortText,
+  setTypeSortDate,
   updateToDoList,
 } from "./actions";
 import { TTodolistState } from "./types";
@@ -30,7 +30,7 @@ const initialState: TTodolistState = {
   search_text: "",
   checked: false,
   text_edit: "",
-  type_sort_name: false,
+  type_sort_date: false,
 };
 export const todoReducer = createReducer(initialState, (builder) => {
   builder
@@ -98,7 +98,7 @@ export const todoReducer = createReducer(initialState, (builder) => {
     .addCase(setInputTextModalEdit, (state, { payload }) => {
       state.text_edit = payload;
     })
-    .addCase(setTypeSortText, (state, { payload }) => {
-      state.type_sort_name = payload;
+    .addCase(setTypeSortDate, (state, { payload }) => {
+      state.type_sort_date = payload;
     });
 });

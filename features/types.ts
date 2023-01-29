@@ -17,5 +17,5 @@ export type TTodolistState = {
   search_text: string;
   checked: boolean;
   text_edit: string;
-  type_sort_name: boolean;
+  type_sort_date: boolean;
 };
