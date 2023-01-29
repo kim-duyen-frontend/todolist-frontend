@@ -87,3 +87,4 @@ export const setInputTextModalEdit = createAction<string>(
   "todolist/textmodaledit"
 );
 export const setTypeSortDate = createAction<boolean>("todolist/sorttexttodos");
+export const setFilterTypeTodos = createAction<boolean>("todolist/filtertypetodos");

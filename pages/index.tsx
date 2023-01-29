@@ -1,4 +1,5 @@
 import { wrapper } from '@/app/store'
+import ButtonFilter from '@/components/ButtonFilter/ButtonFilter'
 import FormTodo from '@/components/FormTodo/FormTodo'
 import ListTodo from '@/components/ListTodo/ListTodo'
 import SearchTodo from '@/components/SearchTodo/SearchTodo'
@@ -20,6 +21,8 @@ const Home: NextPage = () => {
         <FormTodo />
         <Space h="lg" />
         <SearchTodo />
+        <Space h="lg" />
+        <ButtonFilter />
         <Space h="lg" />
         <ListTodo />
       </Container>

@@ -4,6 +4,7 @@ import {
   deleteToDoList,
   getListTodo,
   setChecked,
+  setFilterTypeTodos,
   setInputTextModalEdit,
   setMessageForm,
   setMessageModalEdit,
@@ -31,6 +32,7 @@ const initialState: TTodolistState = {
   checked: false,
   text_edit: "",
   type_sort_date: false,
+  type_filter_todos: false,
 };
 export const todoReducer = createReducer(initialState, (builder) => {
   builder
@@ -100,5 +102,8 @@ export const todoReducer = createReducer(initialState, (builder) => {
     })
     .addCase(setTypeSortDate, (state, { payload }) => {
       state.type_sort_date = payload;
+    })
+    .addCase(setFilterTypeTodos, (state, { payload }) => {
+      state.type_filter_todos = payload;
     });
 });

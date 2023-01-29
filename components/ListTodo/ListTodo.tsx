@@ -23,7 +23,7 @@ import { IconSortAscending, IconSortDescending } from "@tabler/icons";
 import ModalTodo from "../Modal/ModalTodo";
 
 const ListTodo = () => {
-  const { listTodo, search_text, checked, type_sort_date } = useAppSelector(
+  const { listTodo, search_text, checked, type_sort_date, type_filter_todos } = useAppSelector(
     selectCollectionTodoceSelector
   );
   const dispatch = useAppDispatch();
@@ -87,6 +87,13 @@ const ListTodo = () => {
                 .filter((item) =>
                   item.text.toLowerCase().includes(search_text.toLowerCase())
                 )
+                .filter((item) => {
+                  if (type_filter_todos) {
+                    return item.status === false
+                  } else {
+                    return item
+                  }
+                })
                 .sort((a, b) => {
                   if (type_sort_date === true) {
                     return a.createdAt > b.createdAt ? 1 : -1;
